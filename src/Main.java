@@ -14,15 +14,11 @@ public class Main {
                 new Employee("Федорова Светлана Викторовна", 5, 75000),
                 new Employee("Соколов Андрей Иванович", 2, 90000),
         };
-        int sum = 0;
-        int min = 0;
-        for (int i = 0; i <= employees.length-1; i++) {
-            sum = employees[i].getSalary();
-            System.out.println(employees[i].toString());
-            if (employees[i] < employees [i+1]){
-
-            }
-        }
+        Employee.printAllEmployees(employees);
+        System.out.println(Employee.findSumSalary(employees));
+        System.out.println(Employee.findMinSalary(employees));
+        System.out.println(Employee.findMaxSalary(employees));
+        System.out.println(Employee.findMiddleSalary(employees));
+        Employee.printNames(employees);
     }
-
 }
