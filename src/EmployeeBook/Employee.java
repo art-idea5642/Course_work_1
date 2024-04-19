@@ -16,7 +16,6 @@ public class Employee {
         this.id = generator++;
     }
 
-
     public String getEmployeeName() {
         return employeeName;
     }
@@ -78,7 +77,8 @@ public class Employee {
         ;
         return middleSalary;
     }
-    public static void printNames (Employee[] employees) {
+
+    public static void printNames(Employee[] employees) {
         for (int i = 0; i <= employees.length - 1; i++) {
             System.out.println(employees[i].getEmployeeName());
         }
@@ -105,7 +105,7 @@ public class Employee {
         return Objects.hash(employeeName, departmentNumber, salary, id);
     }
 
-    public static void printAllEmployees (Employee[] employees) {
+    public static void printAllEmployees(Employee[] employees) {
         for (int i = 0; i <= employees.length - 1; i++) {
             System.out.println(employees[i].toString());
         }
