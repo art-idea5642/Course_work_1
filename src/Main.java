@@ -21,6 +21,17 @@ public class Main {
         System.out.println(getMaxSalary());
         System.out.println(getAverageSalary());
         printAllNames();
+        increaseSalaryByPercentage(20);
+        System.out.println();
+        printAll();
+        System.out.println(getSum(1));
+        System.out.println(getMinSalary(2));
+        System.out.println(getMaxSalary(4));
+        System.out.println(getAverageSalary(3));
+        printAllNames(1);
+        printAllWithLessSalary(100000);
+        System.out.println();
+        printAllWithMoreSalary(120000);
 
 
     }
@@ -39,21 +50,21 @@ public class Main {
         return sum;
     }
 
-    public static double getMinSalary() {
-        double minSalary = employees[1].getSalary();
+    public static Employee getMinSalary() {
+        Employee minSalary = employees[0];
         for (Employee employee : employees) {
-            if (employee.getSalary() < minSalary) {
-                minSalary = employee.getSalary();
+            if (employee.getSalary() < minSalary.getSalary()) {
+                minSalary = employee;
             }
         }
         return minSalary;
     }
 
-    public static double getMaxSalary() {
-        double maxSalary = employees[1].getSalary();
+    public static Employee getMaxSalary() {
+        Employee maxSalary = employees[0];
         for (Employee employee : employees) {
-            if (employee.getSalary() > maxSalary) {
-                maxSalary = employee.getSalary();
+            if (employee.getSalary() > maxSalary.getSalary()) {
+                maxSalary = employee;
             }
         }
         return maxSalary;
@@ -68,5 +79,95 @@ public class Main {
             System.out.println(employee.getEmployeeName());
         }
     }
+
+    public static void increaseSalaryByPercentage(int percent) {
+        for (Employee employee : employees) {
+            employee.setSalary(employee.getSalary() + employee.getSalary() / 100 * percent);
+        }
+    }
+
+    public static Employee getMinSalary(int department) {
+        Employee minSalary = null;
+        for (Employee employee : employees) {
+            if (employee.getDepartmentNumber() != department) {
+                continue;
+            }
+            if (minSalary == null || employee.getSalary() < minSalary.getSalary()) {
+                minSalary = employee;
+            }
+        }
+        return minSalary;
+    }
+
+    public static Employee getMaxSalary(int department) {
+        Employee maxSalary = null;
+        for (Employee employee : employees) {
+            if (employee.getDepartmentNumber() != department) {
+                continue;
+            }
+            if (maxSalary == null || employee.getSalary() > maxSalary.getSalary()) {
+                maxSalary = employee;
+            }
+        }
+        return maxSalary;
+    }
+
+    public static double getSum(int department) {
+        double sum = 0;
+        for (Employee employee : employees) {
+            if (employee.getDepartmentNumber() == department) {
+                sum += employee.getSalary();
+            }
+        }
+        return sum;
+    }
+
+    public static double getAverageSalary(int department) {
+        int quantity = 0;
+        double salarySum = 0;
+        for (Employee employee : employees) {
+            if (employee.getDepartmentNumber() != department) {
+                continue;
+            }
+            quantity++;
+            salarySum += employee.getSalary();
+
+        }
+        return salarySum / quantity;
+    }
+
+    public static void increaseSalaryByPercentage( int department, int percent) {
+        for (Employee employee : employees) {
+            if (employee.getDepartmentNumber() != department) {
+                continue;
+            }
+            employee.setSalary( employee.getSalary() + employee.getSalary() / 100 * percent);
+        }
+    }
+    public static void printAllNames(int department) {
+        for (Employee employee : employees) {
+            if (employee.getDepartmentNumber() != department) {
+                continue;
+            }
+            System.out.println(employee.getEmployeeName());
+        }
+    }
+    public static void printAllWithLessSalary(int salary) {
+        for (Employee employee : employees) {
+            if (employee.getSalary() >= salary) {
+                continue;
+            }
+            System.out.println(employee);
+        }
+    }
+    public static void printAllWithMoreSalary(int salary) {
+        for (Employee employee : employees) {
+            if (employee.getSalary() < salary) {
+                continue;
+            }
+            System.out.println(employee);
+        }
+    }
+
 
 }
